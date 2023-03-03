@@ -13,7 +13,7 @@ class AccommodationImage extends Model
         'src', 'description', 'accommodation_id'
     ];
 
-    public function accommodation()
+    public function accommodations()
     {
         return $this->belongsTo(Accommodation::class, 'foreign_key');
     }
