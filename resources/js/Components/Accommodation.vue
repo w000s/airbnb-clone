@@ -1,6 +1,5 @@
 <script setup>
 defineProps(["accommodation"]);
-console.log("b0286892ce8cd6d38a16a39d897e42e0.png");
 </script>
 
 <template>
@@ -12,8 +11,8 @@ console.log("b0286892ce8cd6d38a16a39d897e42e0.png");
             <div class="relative pb-48 overflow-hidden">
                 <img
                     class="absolute inset-0 h-full w-full object-cover hover:scale-125 ease-in-out duration-300"
-                    src=""
-                    alt=""
+                    :src="`/../../storage/${accommodation.src}`"
+                    alt="some image"
                 />
             </div>
             <div class="p-4">

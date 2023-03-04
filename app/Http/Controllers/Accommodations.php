@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accommodation;
-use App\Models\AccommodationImage;
-use App\Models\AccommodationReview;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Traits\MicroFunctions;
 
@@ -20,14 +17,17 @@ class Accommodations extends Controller
      */
     public function index()
     {
-        $accommodationWithAverageRating = Accommodation::with('reviews')->get()->map(function ($accommodation) {
-            $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews->all()), 'rating');
+        $accommodationWithAverageRatingandImage = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
+            $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews), 'rating');
+            $accommodation->src = $this->getImage($accommodation->images);
             return $accommodation;
         });
 
+
+
         // hier pagination gebruiken
         return Inertia::render('Accommodations/Index', [
-            'accommodations' => $accommodationWithAverageRating,
+            'accommodations' => $accommodationWithAverageRatingandImage,
         ]);
     }
 }

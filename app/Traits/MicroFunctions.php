@@ -6,11 +6,18 @@ namespace App\Traits;
 trait Microfunctions
 {
 
-    public function getAvarageValueFromArray($collection,  $attributeName)
+    public function getAvarageValueFromArray($collection,  string $attributeName)
     {
         // return the average from the attribute on the collection. If there are no items given, return the number 0
         $average = $collection->avg($attributeName);
 
-        return $average ?? 0;
+        return $average ?? 'No reviews';
+    }
+
+    public function getImage($images)
+    {
+        foreach ($images as $image) {
+            return $image->src;
+        }
     }
 }

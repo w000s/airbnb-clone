@@ -46,10 +46,10 @@ class DatabaseSeeder extends Seeder
         //     'accommodation_id' => 3
         // ]);
 
-        // \App\Models\AccommodationImage::create([
-        //     'src' => fake()->image('storage/images', 640, 480, null, false),
-        //     'description' => 'some image',
-        //     'accommodation_id' => fake()->randomElement($accommodations)
-        // ]);
+        \App\Models\AccommodationImage::create([
+            'src' => fake()->image('storage/app/public', 640, 480, null, false),
+            'description' => 'some image',
+            'accommodation_id' => fake()->randomElement($accommodations)
+        ]);
     }
 }
