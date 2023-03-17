@@ -4,6 +4,8 @@ Alle endpoints uitschrijven met zijn of haar functie en die vervolgens gaan prob
 Anyone can view the listings
 Guest can get Accommodation
 
+On creating accommodation, the user is a tenant.
+
 Endpoints:
 User Post / put / delete Accomodation
 

@@ -3,9 +3,8 @@ defineProps(["accommodation"]);
 </script>
 
 <template>
-    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
-        <a
-            href=""
+    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 cursor-pointer">
+        <div
             class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
         >
             <div class="relative pb-48 overflow-hidden">
@@ -47,6 +46,6 @@ defineProps(["accommodation"]);
             <div class="p-4 flex items-center text-sm text-gray-600">
                 <span class="ml-2">Bekijk beschikbaarheid</span>
             </div>
-        </a>
+        </div>
     </div>
 </template>

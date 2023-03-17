@@ -17,17 +17,24 @@ class Accommodations extends Controller
      */
     public function index()
     {
-        $accommodationWithAverageRatingandImage = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
+        $accommodationWithRatingandImage = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
+            // collect all the ratings that are attached to the accommodation and return average
             $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews), 'rating');
-            $accommodation->src = $this->getImage($accommodation->images);
+            // check if image exist on collection, and set it on the collection to return, else do not set accommodation->src on the collection
+            $this->getImage($accommodation->images) ?  $accommodation->src = $this->getImage($accommodation->images) : null;
             return $accommodation;
         });
 
-
-
         // hier pagination gebruiken
         return Inertia::render('Accommodations/Index', [
-            'accommodations' => $accommodationWithAverageRatingandImage,
+            'accommodations' => $accommodationWithRatingandImage,
         ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function show()
+    {
     }
 }
