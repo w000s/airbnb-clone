@@ -1,18 +1,10 @@
 <script setup>
-import { defineEmits } from "vue";
-
 defineProps(["accommodation"]);
-const emit = defineEmits(["setShowCalendar"]);
-
-const showCalendar = (e) => {
-    emit("setShowCalendar", e);
-};
 </script>
 
 <template>
     <div
-        @click="showCalendar(accommodation.id)"
-        class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 cursor-pointer"
+        class="inset-0 w-full h-screen flex items-center justify-center bg-semi-75"
     >
         <div
             class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
@@ -59,3 +51,5 @@ const showCalendar = (e) => {
         </div>
     </div>
 </template>
+
+<style></style>

@@ -1,31 +1,41 @@
 <script setup>
 import Accommodation from "@/Components/Accommodation.vue";
 import ShowAccommodationModal from "@/Components/ShowAccommodationModal.vue";
+import ShowCalendarModal from "@/Components/ShowCalendarModal.vue";
+
+import { ref, onMounted } from "vue";
 
 defineProps(["accommodations"]);
 
-function setShowAccommodation() {
-    showAccommodation = !showAccommodation;
+let showCalendar = ref(true);
+
+function setShowCalendar(e) {
+    showCalendar.value = !showCalendar.value;
 }
 </script>
 
 <template>
-    <Head title="Campinghuisje" />
     <body class="antialiased bg-gray-200 text-gray-900 font-sans p-6">
-        <div class="container mx-auto">
-            <div v-if="showAccommodation" class="flex flex-wrap -mx-4">
+        <div class="container mx-auto" v-if="showCalendar">
+            <div class="flex flex-wrap -mx-4">
                 <Accommodation
                     v-for="accommodation in accommodations"
                     :key="accommodation.id"
                     :accommodation="accommodation"
-                    @click="setShowAccommodation"
+                    @setShowCalendar="setShowCalendar"
                 />
             </div>
-            <!-- <div v-else class="flex flex-wrap -mx-4">
-                <ShowAccommodationModal
-                    :setShowAccommodation="setShowAccommodation"
+        </div>
+        <div class="container mx-auto" v-else>
+            <div class="flex flex-wrap -mx-4">
+                <ShowCalendarModal
+                    v-for="accommodation in accommodations"
+                    :key="accommodation.id"
+                    :accommodation="accommodation"
+                    :showCalendar="showCalendar"
+                    @click="showCalendar = true"
                 />
-            </div> -->
+            </div>
         </div>
     </body>
 </template>

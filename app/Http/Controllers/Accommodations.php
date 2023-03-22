@@ -30,11 +30,4 @@ class Accommodations extends Controller
             'accommodations' => $accommodationWithRatingandImage,
         ]);
     }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function show()
-    {
-    }
 }
