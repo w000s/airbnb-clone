@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::all()->pluck('id')->toArray();
+        // $users = User::all()->pluck('id')->toArray();
         $accommodations  = Accommodation::all()->pluck('id')->toArray();
 
         // \App\Models\User::create([

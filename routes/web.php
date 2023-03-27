@@ -6,9 +6,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [Accommodations::class, 'index']);
-
-Route::get('/accommodation/{$id}', [Accommodations::class, 'show']);
+Route::controller(Accommodations::class)->group(function ($id) {
+    Route::get('/', 'index')->name('home');
+    Route::get('/accommodation/{id}', 'show')->name('show');
+});
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

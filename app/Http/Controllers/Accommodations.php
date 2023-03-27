@@ -6,15 +6,22 @@ use App\Models\Accommodation;
 use Inertia\Inertia;
 use App\Traits\MicroFunctions;
 
-
 class Accommodations extends Controller
 {
+    protected $accommodation;
+    /**
+     * Create a new controller instance.
+     *
+     * @param  Accommodation  $accommodation
+     * @return void
+     */
+    public function __construct(Accommodation $accommodation)
+    {
+        $this->accommodation = $accommodation;
+    }
 
     use MicroFunctions;
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $accommodationWithRatingandImage = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
@@ -28,6 +35,19 @@ class Accommodations extends Controller
         // hier pagination gebruiken
         return Inertia::render('Accommodations/Index', [
             'accommodations' => $accommodationWithRatingandImage,
+        ]);
+    }
+
+
+    public function show($id)
+    {
+        $accommodation = $this->accommodation::find($id);
+        $accommodationImages = $accommodation->images()->get();
+        $accommodationById = Accommodation::where('id', $id)->get();
+
+        return Inertia::render('Accommodations/Show', [
+            'accommodations' => $accommodationById,
+            'accommodation_images' => $accommodationImages
         ]);
     }
 }

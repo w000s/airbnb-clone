@@ -7,7 +7,7 @@ trait Microfunctions
 
     public function getAvarageValueFromArray($collection,  string $attributeName)
     {
-        // return the average from the attribute on the collection. If there are no items given, return the number 0
+        // return the average from the attribute on the collection. If there are no items given, return "No Reviews"
         $average = $collection->avg($attributeName);
 
         return $average ?? 'No reviews';
