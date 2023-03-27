@@ -17,5 +17,3 @@ const dateValue = ref("");
         />
     </div>
 </template>
-
-<style></style>
