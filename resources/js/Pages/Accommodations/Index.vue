@@ -1,7 +1,5 @@
 <script setup>
 import Accommodation from "@/Components/Accommodation.vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
-import { Link } from "@inertiajs/vue3";
 
 defineProps(["accommodations"]);
 </script>

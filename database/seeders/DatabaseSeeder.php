@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Accommodation;
+use App\Models\Availability;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use App\Models\User;
@@ -45,6 +46,8 @@ class DatabaseSeeder extends Seeder
         //     'review_comment' => 'Best oke',
         //     'accommodation_id' => 3
         // ]);
+
+        Availability::factory()->count(2)->create();
 
         \App\Models\AccommodationImage::create([
             'src' => fake()->image('storage/app/public', 640, 480, null, false),

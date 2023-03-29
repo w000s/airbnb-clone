@@ -10,63 +10,21 @@ use App\Http\Requests\StoreAvailabilityRequest;
 
 class Availabilities extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    protected $availability;
+
+    public function __construct(Availability $availability)
     {
+        $this->availability = $availability;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Index of the availability calendar.
      */
-    public function create()
+    public function index($id)
     {
-        //
-    }
+        $availabilities = Availability::where('accommodation_id', $id)->get();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAvailabilityRequest $request)
-    {
-
-        $request->create('availabilities');
-
-        $validated = $request->validated();
-
-        $request->accomodation()->availabilities()->create($validated);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Availability $availability)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Availability $availability)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Availability $availability)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Availability $availability)
-    {
-        //
+        return $availabilities;
     }
 }

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accommodation;
+use App\Models\Availability;
 use Inertia\Inertia;
 use App\Traits\MicroFunctions;
 
 class Accommodations extends Controller
 {
+    use MicroFunctions;
     protected $accommodation;
+
     /**
      * Create a new controller instance.
      *
@@ -20,11 +23,9 @@ class Accommodations extends Controller
         $this->accommodation = $accommodation;
     }
 
-    use MicroFunctions;
-
     public function index()
     {
-        $accommodationWithRatingandImage = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
+        $accommodations = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
             // collect all the ratings that are attached to the accommodation and return average
             $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews), 'rating');
             // check if image exist on collection, and set it on the collection to return, else do not set accommodation->src on the collection
@@ -34,20 +35,21 @@ class Accommodations extends Controller
 
         // hier pagination gebruiken
         return Inertia::render('Accommodations/Index', [
-            'accommodations' => $accommodationWithRatingandImage,
+            'accommodations' => $accommodations,
         ]);
     }
 
-
     public function show($id)
     {
-        $accommodation = $this->accommodation::find($id);
-        $accommodationImages = $accommodation->images()->get();
+        $accommodationImages = $this->accommodation::find($id)->images()->get();
         $accommodationById = Accommodation::where('id', $id)->get();
 
+        $availabilities = app('App\Http\Controllers\Availabilities')->index($id);
+
         return Inertia::render('Accommodations/Show', [
-            'accommodations' => $accommodationById,
-            'accommodation_images' => $accommodationImages
+            'accommodation' => $accommodationById,
+            'accommodation_images' => $accommodationImages,
+            'availabilities' => $availabilities
         ]);
     }
 }

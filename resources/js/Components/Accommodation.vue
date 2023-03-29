@@ -1,24 +1,12 @@
 <script setup>
-import { defineEmits } from "vue";
 import { ref } from "vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { Link } from "@inertiajs/vue3";
 
-const dateValue = ref("");
-
 defineProps(["accommodation"]);
-const emit = defineEmits(["setShowCalendar"]);
-
-const showCalendar = (e) => {
-    emit("setShowCalendar", e);
-};
 </script>
 
 <template>
-    <div
-        @click="showCalendar(accommodation.id)"
-        class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 cursor-pointer"
-    >
+    <div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4 cursor-pointer">
         <Link :href="route('show', accommodation.id)">
             <div
                 class="c-card block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden"
