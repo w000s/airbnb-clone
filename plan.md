@@ -20,8 +20,14 @@ Dingen:
 -   Wanneer een user een huisje boekt, email confirmation
 -   gebruik maken van pagination bij de listings
 -   availability heeft meerdere start en einddatums, zodat de verhuurder zelf gedetailleerd kan aangeven wanneer zijn huisje beschikbaar is. Wanneer de gebruiker een accomodation vanaf een bepaalde datum als available zet, verandert de status op die datum naar available. De guest, kan dan op alle datums waarop de status op available staat een boeking doen. Wanneer de guest een boeking heeft gedaan verandert de status naar booked. D.m.v. het availability_booking table kan je zien welke guest welk huisje op welk slot heeft geboekt.
--   ter test heb ik de csrf token weggehaald, dit weer terugzetten
 -   foto's bij accommodations
 -   icons bij alle eigenschappen van een room
 -   nieuwe date picker uitzoeken
     omzetten naar tennant, alleen ingelogde user kan boeken
+-   afbeelding oplosseni n de backend
+
+check bij chirper hoe al die layouts en navs werken.
+https://tailwindcomponents.com/component/airbnb-navbar
+
+Search for locations
+Host kan accommodation hosten.

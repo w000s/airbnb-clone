@@ -23,8 +23,8 @@ class AvailabilityFactory extends Factory
         $random = mt_rand(0, 2);
 
         return [
-            'start_date' => fake()->dateTime($max = 'now'),
-            'end_date' => fake()->dateTimeBetween('now', '+2 years'),
+            'start_date' => fake()->dateTimeBetween('now', '+1 year'),
+            'end_date' => fake()->dateTimeBetween('+1 year', '+2 years'),
             'status' => 1,
             'accommodation_id' => fake()->randomElement($accommodations)
         ];

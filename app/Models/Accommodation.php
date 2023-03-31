@@ -38,7 +38,7 @@ class Accommodation extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'foreign_key');
+        return $this->belongsTo(Tenant::class, 'foreign_key');
     }
 
     public function reviews(): HasMany

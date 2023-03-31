@@ -13,7 +13,7 @@ defineProps(["accommodation"]);
             >
                 <div class="relative pb-48 overflow-hidden">
                     <img
-                        class="absolute inset-0 h-full w-full object-cover hover:scale-125 ease-in-out duration-300"
+                        class="absolute inset-0 h-full w-full object-cover hover:scale-105 ease-in-out duration-300"
                         :src="`/../../storage/${accommodation.src}`"
                         alt="some image"
                     />

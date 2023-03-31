@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
         //     'accommodation_id' => 3
         // ]);
 
-        Availability::factory()->count(2)->create();
+        Availability::factory()->count(20)->create();
 
         \App\Models\AccommodationImage::create([
             'src' => fake()->image('storage/app/public', 640, 480, null, false),

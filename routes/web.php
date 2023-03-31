@@ -2,11 +2,13 @@
 
 use App\Http\Controllers\Availabilities;
 use App\Http\Controllers\Accommodations;
+use App\Http\Controllers\Bookings;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 use Inertia\Inertia;
 
-Route::controller(Accommodations::class)->group(function ($id) {
+Route::controller(Accommodations::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/accommodation/{id}', 'show')->name('show');
 });
@@ -22,5 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::resource('book', Bookings::class)
+    ->only(['index', 'store', 'update', 'destroy'])
+    ->middleware(['auth', 'verified']);
+
 
 require __DIR__ . '/auth.php';

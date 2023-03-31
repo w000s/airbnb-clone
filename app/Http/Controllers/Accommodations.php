@@ -52,4 +52,8 @@ class Accommodations extends Controller
             'availabilities' => $availabilities
         ]);
     }
+
+    public function store($id)
+    {
+    }
 }
