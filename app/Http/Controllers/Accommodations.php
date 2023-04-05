@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Accommodation;
-use App\Models\Availability;
+use App\Models\AccommodationImage;
+use App\Http\Requests\StoreAccommodationRequest;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 use App\Traits\MicroFunctions;
 
 class Accommodations extends Controller
@@ -33,9 +35,8 @@ class Accommodations extends Controller
             return $accommodation;
         });
 
-        // hier pagination gebruiken
         return Inertia::render('Accommodations/Index', [
-            'accommodations' => $accommodations,
+            'accommodations' => $accommodations->paginate(15),
         ]);
     }
 
@@ -53,7 +54,32 @@ class Accommodations extends Controller
         ]);
     }
 
-    public function store($id)
+    public function createAccommodationPage()
     {
+        return Inertia::render('Accommodations/Create');
+    }
+
+    public function create(StoreAccommodationRequest $request)
+    {
+        try {
+            $accommodation = $request->user()->accommodations()->create($request->all());
+
+            // accommodation image
+            foreach ($request->file('images') as $image) {
+                $name = now()->timestamp . ".{$image->getClientOriginalName()}";
+
+                $image->storeAs('', $name);
+
+                AccommodationImage::create([
+                    'src' => $name,
+                    'description' => $name,
+                    'accommodation_id' => $accommodation->id
+                ]);
+            }
+
+            return redirect()->back()->with('success', 'File Upload Successfully!!');
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
 }

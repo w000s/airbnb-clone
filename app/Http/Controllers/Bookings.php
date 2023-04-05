@@ -9,9 +9,7 @@ class Bookings extends Controller
 {
     public function store(StoreBookingRequest $request): RedirectResponse
     {
-        $newRequest = $request->user()->bookings();
-
-        $newRequest->create($request->all());
+        $request->user()->bookings()->create($request->all());
 
         return redirect(route('home'));
     }

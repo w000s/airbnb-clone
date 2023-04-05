@@ -1,10 +1,10 @@
 <script setup>
-import NavLink from "@/Components/NavLink.vue";
+import Navbar from "@/Components/Navbar.vue";
 </script>
 
 <template>
     <header>
-        <NavLink></NavLink>
+        <Navbar></Navbar>
     </header>
     <div
         class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"

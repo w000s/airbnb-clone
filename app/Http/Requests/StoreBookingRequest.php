@@ -42,10 +42,10 @@ class StoreBookingRequest extends FormRequest
     public function all($keys = null)
     {
         $allValues = parent::All();
-        $allValues['status'] = 'booked';
-        if (Auth::id()) {
-            $allValues['user_id'] = Auth::id();
-        }
+        $allValues['status'] = 'Booked';
+        $allValues['user_id'] = Auth::id();
+
+
         return $allValues;
     }
 }

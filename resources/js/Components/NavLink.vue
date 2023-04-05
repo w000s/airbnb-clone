@@ -12,7 +12,6 @@ const props = defineProps(["href", "active"]);
     <nav
         class="bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20"
     >
-        <!-- logo -->
         <div class="inline-flex">
             <Link class="_o6689fn" href="/"
                 ><div class="hidden md:block">
@@ -41,8 +40,6 @@ const props = defineProps(["href", "active"]);
                 </div>
             </Link>
         </div>
-
-        <!-- end logo -->
 
         <!-- search bar -->
         <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
@@ -93,16 +90,16 @@ const props = defineProps(["href", "active"]);
         <div class="flex-initial" v-if="user">
             <div class="flex justify-end items-center relative">
                 <div class="flex mr-4 items-center">
-                    <a
+                    <Link
                         class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
-                        href="#"
+                        href="/login"
                     >
                         <div
                             class="flex items-center relative cursor-pointer whitespace-nowrap"
                         >
                             Become a host
                         </div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div class="block">

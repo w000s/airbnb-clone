@@ -18,6 +18,8 @@
     },
     "dependencies": {
         "dayjs": "^1.11.7",
+        "flowbite": "^1.6.4",
+        "flowbite-vue": "^0.0.10",
         "vue-tailwind-datepicker": "^1.4.3"
     }
 }

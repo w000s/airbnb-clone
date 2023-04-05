@@ -17,4 +17,9 @@ class AccommodationImage extends Model
     {
         return $this->belongsTo(Accommodation::class, 'foreign_key');
     }
+
+    public function setFilenamesAttribute($value)
+    {
+        $this->attributes['src'] = json_encode($value);
+    }
 }

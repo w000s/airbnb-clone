@@ -11,7 +11,7 @@ const accommodation = props.accommodation[0];
 const availabilities = props.availabilities;
 const accommodation_images = props.accommodation_images[0]
     ? `/../storage/${props.accommodation_images[0].src}`
-    : "/../../../storage/standard_image.jpg";
+    : "/../../../storage/not-found.png";
 </script>
 
 <template>

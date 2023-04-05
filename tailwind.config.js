@@ -9,6 +9,8 @@ module.exports = {
         "./resources/views/**/*.blade.php",
         "./resources/js/**/*.{vue,js,ts,jsx,tsx}",
         "./node_modules/vue-tailwind-datepicker/**/*.js",
+        "./node_modules/flowbite/**/*.js",
+        "node_modules/flowbite-vue/**/*.{js,jsx,ts,tsx}",
     ],
 
     theme: {
@@ -23,5 +25,5 @@ module.exports = {
         },
     },
 
-    plugins: [require("@tailwindcss/forms")],
+    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
 };
