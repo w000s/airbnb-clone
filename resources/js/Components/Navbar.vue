@@ -6,9 +6,7 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 
 const user = computed(() => usePage().props.auth.user);
-
 const showingNavigationDropdown = ref(false);
-
 const props = defineProps(["href", "active"]);
 </script>
 
@@ -91,7 +89,7 @@ const props = defineProps(["href", "active"]);
             <div class="flex justify-end items-center relative">
                 <div class="flex mr-4 items-center">
                     <Link
-                        href="/create-accommodation"
+                        :href="route('createAccommodationPage')"
                         class="inline-block py-2 px-3 hover:bg-gray-200 rounded-full"
                     >
                         <div
@@ -150,7 +148,7 @@ const props = defineProps(["href", "active"]);
                                                 Profile
                                             </DropdownLink>
                                             <DropdownLink
-                                                :href="route('profile.edit')"
+                                                :href="route('book.index')"
                                             >
                                                 Bookings
                                             </DropdownLink>

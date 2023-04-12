@@ -6,7 +6,6 @@ use App\Models\Accommodation;
 use App\Models\AccommodationImage;
 use App\Http\Requests\StoreAccommodationRequest;
 use Inertia\Inertia;
-use Illuminate\Http\RedirectResponse;
 use App\Traits\MicroFunctions;
 
 class Accommodations extends Controller
@@ -48,7 +47,7 @@ class Accommodations extends Controller
         $availabilities = app('App\Http\Controllers\Availabilities')->index($id);
 
         return Inertia::render('Accommodations/Show', [
-            'accommodation' => $accommodationById,
+            'accommodation' => $accommodationById->first(),
             'accommodation_images' => $accommodationImages,
             'availabilities' => $availabilities
         ]);

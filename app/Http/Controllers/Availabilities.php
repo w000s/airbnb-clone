@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Availability;
-use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\StoreAvailabilityRequest;
-
+use App\Models\AvailabilityBooking;
 
 class Availabilities extends Controller
 {
-
     protected $availability;
 
     public function __construct(Availability $availability)
@@ -26,5 +22,14 @@ class Availabilities extends Controller
         $availabilities = Availability::where('accommodation_id', $id)->get();
 
         return $availabilities;
+    }
+
+    public function getAvailabilityFromBooking($id)
+    {
+        $availabilityWithBooking = Availability::with('bookings')->find(7);
+
+        $availability = $this->index($availabilityWithBooking->accommodation_id);
+
+        return $availabilityWithBooking;
     }
 }

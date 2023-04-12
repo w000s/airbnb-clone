@@ -17,9 +17,9 @@ class Booking extends Model
         'status',
     ];
 
-    public function availabilites(): BelongsToMany
+    public function availabilities(): BelongsToMany
     {
-        return $this->belongsToMany(Availability::class);
+        return $this->belongsToMany(Availability::class, 'availability_booking', 'booking_id', 'availability_id');
     }
 
     public function user(): BelongsTo

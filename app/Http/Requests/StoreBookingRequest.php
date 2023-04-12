@@ -27,7 +27,8 @@ class StoreBookingRequest extends FormRequest
             'start_date' => 'required|date|after:tomorrow',
             'end_date' => 'required|date|after:start_date',
             'status' => 'nullable',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'accommodation_id' => 'required|numeric'
         ];
     }
 

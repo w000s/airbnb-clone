@@ -4,6 +4,7 @@ use App\Http\Controllers\Availabilities;
 use App\Http\Controllers\Accommodations;
 use App\Http\Controllers\Bookings;
 use App\Http\Controllers\ProfileController;
+use App\Models\Availability;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(Accommodations::class)->group(function () {
@@ -16,7 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-accommodation', [Accommodations::class, 'createAccommodationPage'])->name('createAccommodationPage');
 });
 
-Route::resource('availabilities', Availabilities::class)->only(['index', 'store'])->middleware(['auth', 'verified']);;
+Route::get('/availability-booking/{id}', [Availabilities::class, 'getAvailabilityFromBooking'])->name('availability-booking');
+Route::resource('availabilities', Availabilities::class)->only(['index', 'store', 'getAvailabilityFromBooking'])->middleware(['auth', 'verified']);;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

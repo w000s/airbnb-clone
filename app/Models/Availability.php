@@ -24,6 +24,6 @@ class Availability extends Model
 
     public function bookings(): BelongsToMany
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(Booking::class, 'availability_booking', 'booking_id', 'availability_id');
     }
 }

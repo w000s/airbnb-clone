@@ -7,11 +7,9 @@ const props = defineProps([
     "accommodation_images",
     "availabilities",
 ]);
-const accommodation = props.accommodation[0];
-const availabilities = props.availabilities;
 const accommodation_images = props.accommodation_images[0]
     ? `/../storage/${props.accommodation_images[0].src}`
-    : "/../../../storage/not-found.png";
+    : "/../../../storage/tiny.png";
 </script>
 
 <template>
@@ -35,7 +33,10 @@ const accommodation_images = props.accommodation_images[0]
                     </div>
                     <div class="">Price €{{ accommodation.price }}</div>
                     <div class="bg-white rounded-lg overflow-visible">
-                        <ShowCalendarModal :availabilities="availabilities" />
+                        <ShowCalendarModal
+                            :accommodationId="accommodation.id"
+                            :availabilities="availabilities"
+                        />
                     </div>
                 </div>
             </div>

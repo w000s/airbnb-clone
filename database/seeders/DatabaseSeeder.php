@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $users = User::all()->pluck('id')->toArray();
+        $users = User::all()->pluck('id')->toArray();
         $accommodations  = Accommodation::all()->pluck('id')->toArray();
 
         // \App\Models\User::create([
@@ -30,24 +30,24 @@ class DatabaseSeeder extends Seeder
         //     'is_tenant' => true
         // ]);
 
-        // \App\Models\Accommodation::create([
-        //     'location' => 'Amsterdam',
-        //     'maximum_of_guests' => 3,
-        //     'bedrooms' => 2,
-        //     'beds' => 4,
-        //     'description' => 'Best leuk huisje opzich',
-        //     'facilities' => 'Met een best leuke omgeving',
-        //     'price' => '100',
-        //     'user_id' => fake()->randomElement($users)
-        // ]);
+        \App\Models\Accommodation::create([
+            'location' => 'Amsterdam',
+            'maximum_of_guests' => 3,
+            'bedrooms' => 2,
+            'beds' => 4,
+            'description' => 'Best leuk huisje opzich',
+            'facilities' => 'Met een best leuke omgeving',
+            'price' => '100',
+            'user_id' => fake()->randomElement($users)
+        ]);
 
-        // \App\Models\AccommodationReview::create([
-        //     'rating' => fake()->numberBetween(3, 5),
-        //     'review_comment' => 'Best oke',
-        //     'accommodation_id' => 3
-        // ]);
+        \App\Models\AccommodationReview::create([
+            'rating' => fake()->numberBetween(3, 5),
+            'review_comment' => 'Best oke',
+            'accommodation_id' => fake()->randomElement($accommodations)
+        ]);
 
-        Availability::factory()->count(20)->create();
+        Availability::factory()->count(5)->create();
 
         \App\Models\AccommodationImage::create([
             'src' => fake()->image('storage/app/public', 640, 480, null, false),

@@ -24,10 +24,18 @@ Dingen:
 -   icons bij alle eigenschappen van een room
 -   nieuwe date picker uitzoeken
     omzetten naar tennant, alleen ingelogde user kan boeken
--   afbeelding oplosseni n de backend
 
 check bij chirper hoe al die layouts en navs werken.
 https://tailwindcomponents.com/component/airbnb-navbar
 
 Search for locations
 Host kan accommodation hosten.
+
+Register
+
+na het succesvol aanmaken van accommodation een automatische mail sturen en naar een completed succesfully pagina
+na het succesvol aanmaken van een boeking een mail sturen, en naar een completed succesfully pagina
+
+availability bij createn van accommodation
+
+accommodation

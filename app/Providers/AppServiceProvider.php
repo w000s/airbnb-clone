@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         /**
          * Paginate a standard Laravel Collection.
          *
