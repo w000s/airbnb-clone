@@ -52,7 +52,7 @@ const props = defineProps(["accommodations"]);
                         :key="index.label"
                         v-html="links.label"
                         aria-current="page"
-                        class="relative z-10 inline-flex items-center bg-amber-700 bg-opacity-70 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        class="relative z-10 inline-flex items-center bg-slate-800 bg-opacity-90 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     ></a>
 
                     <a

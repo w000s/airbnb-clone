@@ -153,7 +153,7 @@ const props = defineProps(["href", "active"]);
                                                 Bookings
                                             </DropdownLink>
                                             <DropdownLink
-                                                :href="route('profile.edit')"
+                                                :href="route('profile.index')"
                                             >
                                                 Tiny house
                                             </DropdownLink>

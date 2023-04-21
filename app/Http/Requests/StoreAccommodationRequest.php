@@ -29,7 +29,8 @@ class StoreAccommodationRequest extends FormRequest
             'bedrooms' => 'nullable',
             'maximum_of_guests' => 'required',
             'price' => 'required',
-            'images' => 'required'
+            'images' => 'required',
+            'availabilities' => 'nullable'
         ];
     }
 

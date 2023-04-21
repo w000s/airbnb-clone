@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Availability;
-use App\Models\AvailabilityBooking;
+use App\Models\Booking;
+use Illuminate\Http\Request;
 
 class Availabilities extends Controller
 {
-    protected $availability;
-
-    public function __construct(Availability $availability)
-    {
-        $this->availability = $availability;
-    }
-
     /**
      * Index of the availability calendar.
      */
@@ -26,10 +20,50 @@ class Availabilities extends Controller
 
     public function getAvailabilityFromBooking($id)
     {
-        $availabilityWithBooking = Availability::with('bookings')->find(7);
+        $availabilityBooking = Booking::find($id)->availabilities;
 
-        $availability = $this->index($availabilityWithBooking->accommodation_id);
+        return $this->index($availabilityBooking->first()->accommodation_id);
+    }
 
-        return $availabilityWithBooking;
+    public function disableAvailabilityByBooking(int $id, string $start_date, string $end_date)
+    {
+        //Todo
+    }
+
+    public function store(Request $request, $accommodationId)
+    {
+        if (count($request->availabilities) > 0) {
+            $availability = new Availability;
+
+            $availability->start_date = $request->availabilities[0];
+            $availability->end_date = $request->availabilities[1];
+            $availability->accommodation_id = $accommodationId;
+            $availability->status = 1;
+
+            $availability->save();
+
+            return redirect(route('home'));
+        } else {
+            $availability = new Availability;
+
+            $availability->start_date = '2023-01-01';
+            $availability->end_date = '2040-01-01';
+            $availability->accommodation_id = $accommodationId;
+            $availability->status = 1;
+
+            $availability->save();
+
+            return redirect(route('home'));
+        }
+    }
+
+    public function update(array $availabilities, int $accommodationId)
+    {
+        $availability = Availability::where('accommodation_id', $accommodationId);
+
+        if (count($availabilities) > 0) {
+
+            $availability->update(['start_date' => $availabilities[0], 'end_date' => $availabilities[1], 'accommodation_id' => $accommodationId, 'status' => 1]);
+        }
     }
 }

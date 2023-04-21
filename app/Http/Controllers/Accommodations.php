@@ -6,6 +6,7 @@ use App\Models\Accommodation;
 use App\Models\AccommodationImage;
 use App\Http\Requests\StoreAccommodationRequest;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 use App\Traits\MicroFunctions;
 
 class Accommodations extends Controller
@@ -39,12 +40,20 @@ class Accommodations extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($id, $fromUpdate = false)
     {
         $accommodationImages = $this->accommodation::find($id)->images()->get();
         $accommodationById = Accommodation::where('id', $id)->get();
 
-        $availabilities = app('App\Http\Controllers\Availabilities')->index($id);
+        $availabilities = (new Availabilities)->index($id);
+
+        if ($fromUpdate) {
+            return [
+                'accommodation' => $accommodationById->first(),
+                'accommodation_images' => $accommodationImages,
+                'availabilities' => $availabilities
+            ];
+        }
 
         return Inertia::render('Accommodations/Show', [
             'accommodation' => $accommodationById->first(),
@@ -76,9 +85,55 @@ class Accommodations extends Controller
                 ]);
             }
 
-            return redirect()->back()->with('success', 'File Upload Successfully!!');
+            (new Availabilities)->store($request, $accommodation->id);
+
+            return redirect(route('home'))->with('success', 'Accommodation created!');
         } catch (\Exception $e) {
             return $e;
         }
+    }
+
+    public function accommodationToUpdate($id)
+    {
+        // retrieve accommodation info;
+        $accommodation = $this->show($id, true);
+
+        return Inertia::render('Accommodations/Edit', [
+            'accommodation' => $accommodation['accommodation'],
+            'accommodation_images' => $accommodation['accommodation_images'],
+            'availabilities' => $accommodation['availabilities'],
+        ]);
+    }
+
+    public function update(Request $request, $accommodationId)
+    {
+        $accommodation = Accommodation::find($accommodationId);
+
+        if ($request->user()->id !== $accommodation->user_id) {
+            return response('You are not authorized to update this booking. Contact us for more informatiion.');
+        }
+        if (!$accommodation) {
+            return response("Accommodation not found");
+        }
+
+        try {
+            $accommodation->location = $request->location;
+            $accommodation->maximum_of_guests = $request->maximum_of_guests;
+            $accommodation->bedrooms = $request->bedrooms;
+            $accommodation->beds = $request->beds;
+            $accommodation->description = $request->description;
+            $accommodation->facilities = $request->facilities;
+            $accommodation->price = $request->price;
+
+            if ($request->availabilities) {
+                (new Availabilities)->update($request->availabilities, $request->id);
+            }
+
+            $accommodation->save();
+        } catch (\Exception $e) {
+            return $e;
+        }
+
+        return redirect(route('home'));
     }
 }

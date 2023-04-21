@@ -19,4 +19,10 @@ trait Microfunctions
             return $image->src;
         }
     }
+
+    public function scopeCreatedBetweenDates($query, array $dates)
+    {
+        return $query->whereDate('created_at', '>=', $dates[0])
+            ->whereDate('created_at', '<=', $dates[1]);
+    }
 }

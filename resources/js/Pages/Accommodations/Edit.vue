@@ -1,13 +1,14 @@
 <script setup>
 import Layout from "@/Layouts/Layout.vue";
 import { useForm, Head } from "@inertiajs/vue3";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import ShowCalendarModal from "@/Components/ShowCalendarModal.vue";
 import InputError from "@/Components/InputError.vue";
 
-let images = reactive([]);
-let availabilities = reactive([]);
+const props = defineProps(["accommodation", "accommodation_images"]);
+
 let createAvailabilityMode = ref(true);
+let availabilities = ref([]);
 
 const form = useForm({
     location: "",
@@ -25,23 +26,38 @@ function setAvailabilities(dateValue) {
     form.availabilities = dateValue;
 }
 
+onMounted(() => {
+    form.location = props.accommodation.location;
+    form.description = props.accommodation.description;
+    form.facilities = props.accommodation.facilities;
+    form.beds = props.accommodation.beds;
+    form.bedrooms = props.accommodation.bedrooms;
+    form.maximum_of_guests = props.accommodation.maximum_of_guests;
+    form.price = props.accommodation.price;
+    form.images = props.accommodation_images;
+});
+
 function submit() {
     createAvailabilityMode = !createAvailabilityMode;
 
-    form.post(route("create", { forceFormData: true }), {
-        onSuccess: () => form.reset(),
-    });
+    console.log(form);
+    form.put(
+        route("accommodationUpdate", props.accommodation.id, {
+            _method: "put",
+            images: form.images,
+        })
+    );
 }
 </script>
 
 <template>
     <Layout>
-        <Head title="create-accommodation" />
+        <Head title="Update Accommodation" />
         <form enctype="multipart/form-data">
             <div class="mt-5 bg-white rounded-lg shadow">
                 <div class="py-5 px-5">
                     <h1 class="inline text-2xl font-semibold leading-none">
-                        Rent out your Tiny House
+                        Edit your Tiny House
                     </h1>
                 </div>
                 <div class="py-5 px-5">
@@ -121,13 +137,15 @@ function submit() {
                     />
                     <InputError :message="form.errors.images" />
 
-                    <div class="">
-                        Select availability dates:
-                        <ShowCalendarModal
-                            :availabilities="availabilities"
-                            v-on:setAvailabilities="setAvailabilities"
-                            :createAvailabilityMode="createAvailabilityMode"
-                        />
+                    <div>
+                        <div>
+                            Select availability dates:
+                            <ShowCalendarModal
+                                :availabilities="availabilities"
+                                v-on:setAvailabilities="setAvailabilities"
+                                :createAvailabilityMode="createAvailabilityMode"
+                            />
+                        </div>
                     </div>
                 </div>
                 <hr class="mt-4" />

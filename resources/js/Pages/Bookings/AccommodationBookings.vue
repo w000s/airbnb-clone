@@ -1,6 +1,6 @@
 <script setup>
-import Booking from "@/Components/Booking.vue";
 import Layout from "@/Layouts/Layout.vue";
+import Booking from "@/Components/Booking.vue";
 import { Link } from "@inertiajs/vue3";
 
 const props = defineProps(["bookings"]);
@@ -21,10 +21,9 @@ const props = defineProps(["bookings"]);
             </div>
             <div v-else>
                 <Link :href="route('home')">
-                    No Booking history. Check out the available tiny houses
-                    here</Link
-                >
+                    This tiny house has no Bookings yet
+                </Link>
             </div>
-        </div>
-    </Layout>
+        </div></Layout
+    >
 </template>

@@ -24,7 +24,7 @@ class StoreAvailabilityRequest extends FormRequest
         return [
             'start_date' => 'required|date|after:tomorrow',
             'end_date' => 'required|date|after:tomorrow',
-            'status' => 'required'
+            'status' => 'nullable'
         ];
     }
 }
