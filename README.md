@@ -18,6 +18,8 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ### Rent out your Tiny House
 
+### All ratings are averaged through this micro function
+
 ### Input Validation
 
 ### Manage the Tiny Houses that you have listed
