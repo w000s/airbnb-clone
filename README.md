@@ -14,15 +14,15 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ### Update / Cancel a booking
 
-## HOST FUNCTIONALITIES
+### HOST FUNCTIONALITIES
 
-## Rent out your Tiny House
+### Rent out your Tiny House
 
-## Input Validation
+### Input Validation
 
-## Manage the Tiny Houses that you have listed
+### Manage the Tiny Houses that you have listed
 
-## Edit your Tiny house
+### Edit your Tiny house
 
-## Update / Cancel a booking 
+### Update / Cancel a booking 
 
