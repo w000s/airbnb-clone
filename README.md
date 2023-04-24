@@ -9,6 +9,8 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ### Search functionality
 
+[![download43ffdb2e4c0fca54.gif](https://s12.gifyu.com/images/download43ffdb2e4c0fca54.gif)](https://gifyu.com/image/Sl9h8)
+
 ### Multiple images
 
 ### Availability validation, so you are not able to book a date where the Tiny house is not available
