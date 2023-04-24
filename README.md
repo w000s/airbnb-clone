@@ -6,7 +6,7 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ### Pagination
 
-https://gifyu.com/image/Sl92d
+![Pagination example](https://gifyu.com/image/Sl92d)
 
 ### Search functionality
 
