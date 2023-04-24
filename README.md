@@ -17,19 +17,29 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ### Multiple images
 
+[![ezgif.com-video-to-gif-3da15156d73db3168.gif](https://s11.gifyu.com/images/ezgif.com-video-to-gif-3da15156d73db3168.gif)](https://gifyu.com/image/SlEbU)
+
 ### Update / Cancel a booking
+
+[![ezgif.com-video-to-gif-463b7b222708aacb1.gif](https://s11.gifyu.com/images/ezgif.com-video-to-gif-463b7b222708aacb1.gif)](https://gifyu.com/image/SlExz)
 
 ### HOST FUNCTIONALITIES
 
-### Rent out your Tiny House
+### Rent out your Tiny House With Validation
+
+![image](https://user-images.githubusercontent.com/17982931/234026553-3b284ab6-54f5-4364-b745-9692e7b3a592.png)
 
 ### All ratings are averaged through this micro function
 
-### Input Validation
+![image](https://user-images.githubusercontent.com/17982931/234026674-4ad68fdd-f27b-4252-9e63-ee8da5b87a94.png)
 
 ### Manage the Tiny Houses that you have listed
 
+![image](https://user-images.githubusercontent.com/17982931/234026742-11d78d62-1510-4eb1-9b3f-d8b09c4e94a0.png)
+
 ### Edit your Tiny house
 
-### Update / Cancel a booking 
+[![ezgif.com-video-to-gif-5.gif](https://s12.gifyu.com/images/ezgif.com-video-to-gif-5.gif)](https://gifyu.com/image/SlEN6)
+
+### Update / Cancel a booking on your tiny house
 
