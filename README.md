@@ -29,9 +29,8 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 ![image](https://user-images.githubusercontent.com/17982931/234026553-3b284ab6-54f5-4364-b745-9692e7b3a592.png)
 
-### All ratings are averaged through this micro function
 
-![image](https://user-images.githubusercontent.com/17982931/234026674-4ad68fdd-f27b-4252-9e63-ee8da5b87a94.png)
+
 
 ### Manage the Tiny Houses that you have listed
 
@@ -41,5 +40,6 @@ Tiny house Plaza is platofrm where you can both list and book tiny houses. I wil
 
 [![ezgif.com-video-to-gif-5.gif](https://s12.gifyu.com/images/ezgif.com-video-to-gif-5.gif)](https://gifyu.com/image/SlEN6)
 
-### Update / Cancel a booking on your tiny house
+- Update / Cancel a booking on your tiny house
+- All ratings are averaged through a micro function
 
