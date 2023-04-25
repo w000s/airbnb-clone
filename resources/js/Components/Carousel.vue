@@ -6,9 +6,9 @@ const props = defineProps(["images"]);
 </script>
 
 <template>
-    <Carousel autoplay :items-to-show="2">
+    <Carousel v-if="props.images.length > 0" :items-to-show="3">
         <slide v-for="(image, index) in props.images" :key="index">
-            <img :src="`/storage/${image.src}`" alt="" />
+            <img class="mb-8" :src="`/storage/${image.src}`" alt="Tiny house" />
         </slide>
 
         <template #addons>
@@ -16,4 +16,7 @@ const props = defineProps(["images"]);
             <pagination />
         </template>
     </Carousel>
+    <div v-else>
+        <img class="mb-8" :src="props.image.src" alt="Tiny house" />
+    </div>
 </template>

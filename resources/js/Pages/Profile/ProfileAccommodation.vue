@@ -3,7 +3,6 @@ import Pagination from "@/Components/Pagination.vue";
 import Layout from "@/Layouts/Layout.vue";
 import { Link } from "@inertiajs/vue3";
 
-console.log(props.accommodations);
 const props = defineProps(["accommodations"]);
 </script>
 
@@ -35,7 +34,7 @@ const props = defineProps(["accommodations"]);
                                 <div class="flex-shrink-0">
                                     <img
                                         class="w-8 h-8 rounded-full"
-                                        :src="`/../../storage/${accommodation.src}`"
+                                        :src="`/storage/${accommodation.src}`"
                                         alt="Image"
                                     />
                                 </div>
@@ -103,7 +102,4 @@ const props = defineProps(["accommodations"]);
             >
         </div>
     </Layout>
-    <div class="flex flex-col items-center">
-        <Pagination :accommodations="props.accommodations" />
-    </div>
 </template>

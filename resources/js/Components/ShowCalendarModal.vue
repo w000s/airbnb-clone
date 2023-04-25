@@ -11,6 +11,7 @@ const props = defineProps([
     "editing",
     "createAvailabilityMode",
     "setAvailability",
+    "price",
 ]);
 
 const emit = defineEmits(["toggleEditing", "setAvailabilities"]);
@@ -76,7 +77,6 @@ function cancel() {
     <form v-if="!createAvailabilityMode">
         <div class="bg-white hover:shadow-xl rounded-lg overflow-visible">
             <vue-tailwind-datepicker
-                no-input
                 as-single
                 use-range
                 placeholder="See availability"
@@ -99,14 +99,14 @@ function cancel() {
 
         <div v-else class="cursor-pointer">
             <PrimaryButton
-                class="mt-4-4"
+                class="h-[50px] mt-4 w-full"
                 @click.prevent="submitBookPost"
                 type="submit"
-                >Book</PrimaryButton
-            >
+                >Book Now for €{{ props.price }}
+            </PrimaryButton>
         </div>
     </form>
-    <div v-else class="">
+    <div v-else>
         <vue-tailwind-datepicker
             as-single
             use-range

@@ -6,8 +6,9 @@ use App\Models\Accommodation;
 use App\Models\AccommodationImage;
 use App\Http\Requests\StoreAccommodationRequest;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Traits\MicroFunctions;
+use Illuminate\Http\Request;
+
 
 class Accommodations extends Controller
 {
@@ -27,16 +28,19 @@ class Accommodations extends Controller
 
     public function index()
     {
-        $accommodations = Accommodation::with('reviews', 'images')->get()->map(function ($accommodation) {
-            // collect all the ratings that are attached to the accommodation and return average
-            $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews), 'rating');
-            // check if image exist on collection, and set it on the collection to return, else do not set accommodation->src on the collection
-            $this->getImage($accommodation->images) ?  $accommodation->src = $this->getImage($accommodation->images) : null;
-            return $accommodation;
-        });
+        $accommodations = Accommodation::query()
+            ->when(request()->input('search'), function ($query, $search) {
+                $query->where('location', 'like', "%{$search}%");
+            })->with('reviews', 'images')->get()->map(function ($accommodation) {
+                // collect all the ratings that are attached to the accommodation and return average
+                $accommodation->average_rating = $this->getAvarageValueFromArray(collect($accommodation->reviews), 'rating');
+                // check if image exist on collection, and set it on the collection to return, else do not set accommodation->src on the collection
+                $this->getImage($accommodation->images) ?  $accommodation->src = $this->getImage($accommodation->images) : null;
+                return $accommodation;
+            })->paginate(15)->withQueryString();
 
         return Inertia::render('Accommodations/Index', [
-            'accommodations' => $accommodations->paginate(15),
+            'accommodations' => $accommodations,
         ]);
     }
 
@@ -135,5 +139,11 @@ class Accommodations extends Controller
         }
 
         return redirect(route('home'));
+    }
+
+    public function search(Request $query)
+    {
+        $data = Accommodation::where('name', 'LIKE', '%' . $query->keyword . '%')->get();
+        return response()->json($data);
     }
 }

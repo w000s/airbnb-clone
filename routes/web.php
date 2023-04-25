@@ -6,6 +6,9 @@ use App\Http\Controllers\Bookings;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+
+
+
 Route::controller(Accommodations::class)->group(function () {
     Route::get('/', 'index')->name('home');
     Route::get('/accommodation/{id}', 'show')->name('show');

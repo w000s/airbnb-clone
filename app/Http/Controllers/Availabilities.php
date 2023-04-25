@@ -32,18 +32,17 @@ class Availabilities extends Controller
 
     public function store(Request $request, $accommodationId)
     {
-        if (count($request->availabilities) > 0) {
-            $availability = new Availability;
 
+        if ($request->availabilities) {
+            $availability = new Availability;
             $availability->start_date = $request->availabilities[0];
             $availability->end_date = $request->availabilities[1];
             $availability->accommodation_id = $accommodationId;
             $availability->status = 1;
 
             $availability->save();
-
-            return redirect(route('home'));
         } else {
+
             $availability = new Availability;
 
             $availability->start_date = '2023-01-01';
@@ -53,7 +52,7 @@ class Availabilities extends Controller
 
             $availability->save();
 
-            return redirect(route('home'));
+            return $availability;
         }
     }
 

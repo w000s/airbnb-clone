@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::all()->pluck('id')->toArray();
+        // $users = User::all()->pluck('id')->toArray();
         $accommodations  = Accommodation::all()->pluck('id')->toArray();
 
         // \App\Models\User::create([
@@ -41,13 +41,13 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => fake()->randomElement($users)
         // ]);
 
-        // \App\Models\AccommodationReview::create([
-        //     'rating' => fake()->numberBetween(3, 5),
-        //     'review_comment' => 'Best oke',
-        //     'accommodation_id' => fake()->randomElement($accommodations)
-        // ]);
+        \App\Models\AccommodationReview::create([
+            'rating' => fake()->numberBetween(3, 5),
+            'review_comment' => 'Best oke',
+            'accommodation_id' => fake()->randomElement($accommodations)
+        ]);
 
-        Availability::factory()->count(5)->create();
+        // Availability::factory()->count(5)->create();
 
         // \App\Models\AccommodationImage::create([
         //     'src' => fake()->image('storage/app/public', 640, 480, null, false),

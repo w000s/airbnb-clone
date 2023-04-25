@@ -1,13 +1,27 @@
 <script setup>
-import { computed, ref, watch, reactive } from "vue";
+import { computed, ref, watch } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
+
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
+import axios from "axios";
 
 const user = computed(() => usePage().props.auth.user);
 const showingNavigationDropdown = ref(false);
 const props = defineProps(["href", "active"]);
+
+let search = ref("");
+let filterPage = ref(false);
+
+watch(
+    search,
+    (value) => {
+        router.get("/", { search: value }, { preserveState: true });
+    },
+    { deep: true }
+);
 </script>
 
 <template>
@@ -29,42 +43,17 @@ const props = defineProps(["href", "active"]);
         <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
             <div class="inline-block">
                 <div class="inline-flex items-center max-w-full">
-                    <button
-                        class="flex items-center flex-grow-0 flex-shrink pl-2 relative w-60 border rounded-full px-1 py-1"
-                        type="button"
+                    <div
+                        class="flex relative w-500px h-48px group justify-center items-center z-1001 pl-8"
                     >
-                        <div
-                            class="block flex-grow flex-shrink overflow-hidden"
-                        >
-                            Start your search
-                        </div>
-                        <div
-                            class="flex items-center justify-center relative h-8 w-8 rounded-full"
-                        >
-                            <svg
-                                viewBox="0 0 32 32"
-                                xmlns="http://www.w3.org/2000/svg"
-                                aria-hidden="true"
-                                role="presentation"
-                                focusable="false"
-                                style="
-                                    display: block;
-                                    fill: none;
-                                    height: 12px;
-                                    width: 12px;
-                                    stroke: currentcolor;
-                                    stroke-width: 5.33333;
-                                    overflow: visible;
-                                "
-                            >
-                                <g fill="none">
-                                    <path
-                                        d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-                                    ></path>
-                                </g>
-                            </svg>
-                        </div>
-                    </button>
+                        <input
+                            class="flex h-48px w-500x px-3 py-3 pr-10 placeholder-gray-600 text-black text-18px flex-none border border-transparent rounded focus:border-gray-400 outline-none"
+                            type="text"
+                            name="search"
+                            v-model="search"
+                            placeholder="Start your Search"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,9 +100,8 @@ const props = defineProps(["href", "active"]);
                             class="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg"
                         >
                             <div>
-                                <!-- Settings Dropdown -->
                                 <div>
-                                    <Dropdown align="right" width="48">
+                                    <Dropdown width="48">
                                         <template #trigger>
                                             <span
                                                 class="inline-flex rounded-md"

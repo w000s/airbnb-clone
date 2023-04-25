@@ -31,12 +31,15 @@ class Bookings extends Controller
         $availabilities = $availabilityAccommodation->where('start_date', '<=', $request->start_date)
             ->where('end_date', '>', $request->end_date);
 
+
         if (count($availabilities) > 0) {
             $booking = $request->user()->bookings()->create($request->all());
             $booking->availabilities()->sync($availabilities->first()->id);
         } else {
             $booking = $request->user()->bookings()->create($request->all());
-            $availability = $request->user()->availabilities()->store($request->all());
+
+            $availability = (new Availabilities)->store($request, $request->accommodation_id);
+
             $booking->availabilities()->sync($availability->id);
         }
 
@@ -90,6 +93,6 @@ class Bookings extends Controller
             return $query->whereIn('availability_id', $availabilityArray);
         })->get();
 
-        return Inertia::render('Bookings/AccommodationBookings', ['bookings' => $bookings]);
+        return Inertia::render('Bookings/Index', ['bookings' => $bookings]);
     }
 }

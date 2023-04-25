@@ -13,16 +13,16 @@ trait Microfunctions
         return $average ?? 'No reviews';
     }
 
+    public function scopeCreatedBetweenDates($query, array $dates)
+    {
+        return $query->whereDate('created_at', '>=', $dates[0])
+            ->whereDate('created_at', '<=', $dates[1]);
+    }
+
     public function getImage($images)
     {
         foreach ($images as $image) {
             return $image->src;
         }
-    }
-
-    public function scopeCreatedBetweenDates($query, array $dates)
-    {
-        return $query->whereDate('created_at', '>=', $dates[0])
-            ->whereDate('created_at', '<=', $dates[1]);
     }
 }

@@ -40,13 +40,7 @@ onMounted(() => {
 function submit() {
     createAvailabilityMode = !createAvailabilityMode;
 
-    console.log(form);
-    form.put(
-        route("accommodationUpdate", props.accommodation.id, {
-            _method: "put",
-            images: form.images,
-        })
-    );
+    form.put(route("accommodationUpdate", props.accommodation.id));
 }
 </script>
 
