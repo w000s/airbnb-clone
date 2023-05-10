@@ -2,7 +2,7 @@
 - Laravel Sail: https://laravel.com/docs/10.x/sail
 
 ## Load Images
-Since we are looking for images in the storage/public folder, you need to make sure the FILESYSTEM_DISK is set to public and you can create a storage link by the using hte following command: 
+Since we are looking for images in the storage/public folder, you need to make sure the FILESYSTEM_DISK is set to public and you might need to create a storage link by executing the following command: 
 
 *sail artisan storage:link*
 
