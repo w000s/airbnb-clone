@@ -1,3 +1,11 @@
+# Requirements
+- Laravel Sail: https://laravel.com/docs/10.x/sail
+
+## Load Images
+Since we are looking for images in the storage/public folder, you need to make sure the FILESYSTEM_DISK is set to public and you can create a storage link by the using hte following command: 
+
+*sail artisan storage:link*
+
 ## Tiny house Plaza
 
 Tiny house Plaza is platofrm where you can both list and book tiny houses. I will walk you through its functionalities with a couple of gifs!
