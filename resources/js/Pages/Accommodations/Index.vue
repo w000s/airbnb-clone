@@ -8,9 +8,8 @@ const props = defineProps(["accommodations"]);
 
 <template>
     <Layout>
-        <div class="flex flex-wrap">
+        <div class="flex min-w-full flex-wrap">
             <Accommodation
-                class=""
                 v-for="accommodation in accommodations.data"
                 :key="accommodation.id"
                 :accommodation="accommodation"
